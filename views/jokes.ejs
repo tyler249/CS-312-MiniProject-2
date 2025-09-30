@@ -15,7 +15,7 @@
   <!-- See if there was an error with the joke API -->
   <% if (jokes.error) { %>
     <p>Error: <%= jokes.message %></p>
-    <!-- Otherwise, display the joke(s) to the user -->
+    <!-- Otherwise, display the jokes to the user -->
   <% } else if (jokes.jokes) { %>
     <% jokes.jokes.forEach(joke => { %>
       <!-- Split Up Jokes between one liners and two liners -->
