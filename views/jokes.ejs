@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Jokes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Titan+One&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+  <h1>Here are your jokes:</h1>
+  <!-- See if there was an error with the joke API -->
+  <% if (jokes.error) { %>
+    <p>Error: <%= jokes.message %></p>
+    <!-- Otherwise, display the joke(s) to the user -->
+  <% } else if (jokes.jokes) { %>
+    <% jokes.jokes.forEach(joke => { %>
+      <!-- Split Up Jokes between one liners and two liners -->
+      <div class="joke">
+        <% if (joke.type === "single") { %>
+          <p><%= joke.joke %></p>
+        <% } else { %>
+          <p class="setup"><%= joke.setup %></p>
+          <p class="delivery"><%= joke.delivery %></p>
+        <% } %>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <!-- Single joke returned -->
+    <div class="joke">
+      <% if (jokes.type === "single") { %>
+        <p><%= jokes.joke %></p>
+      <% } else { %>
+        <p class="setup"><%= jokes.setup %></p>
+        <p class="delivery"><%= jokes.delivery %></p>
+      <% } %>
+    </div>
+  <% } %>
+
+  <a href="/">Back to form</a>
+</body>
+</html>
